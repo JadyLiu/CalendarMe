@@ -79,9 +79,13 @@ var relevantEvents = new Array();
 // Adding session handlers
 var newSessionHandlers = {
     'LaunchRequest': function () {
-        this.handler.state = states.SEARCHMODE;
+        //this.handler.state = states.SEARCHMODE;
         this.emit(':ask', skillName + " " + welcomeMessage, welcomeMessage);
     },
+    'Unhandled': function() {
+        var message = 'Say yes to continue, or no to end';
+        this.emit(':ask', message, message);
+    }
 };
 
 // Create a new handler with a SEARCH state
@@ -197,13 +201,14 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         this.emit(':tell', killSkillMessage);
     },
 
-    'SessionEndedRequest': function () {
-        this.emit('AMAZON.StopIntent');
-    },
-
     'Unhandled': function () {
         this.emit(':ask', HelpMessage, HelpMessage);
+    },
+
+    'SessionEndedRequest': function () {
+        this.emit('AMAZON.StopIntent');
     }
+
 });
 
 // Create a new handler object for description state
@@ -250,13 +255,14 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         alexa.emit(':ask', eventNumberMoreInfoText, eventNumberMoreInfoText);
     },
 
-    'SessionEndedRequest': function () {
-        this.emit('AMAZON.StopIntent');
-    },
-
     'Unhandled': function () {
         this.emit(':ask', HelpMessage, HelpMessage);
+    },
+
+    'SessionEndedRequest': function () {
+        this.emit('AMAZON.StopIntent');
     }
+
 });
 
 // register handlers
