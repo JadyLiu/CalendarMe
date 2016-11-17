@@ -14,7 +14,8 @@ var alexa;
 var APP_ID = "amzn1.ask.skill.6ce3c032-7595-46e9-9a2f-97f161ef3098"; 
 
 // URL to get the .ics from, in this instance we are getting from Stanford however this can be changed
-var URL = "http://events.stanford.edu/eventlist.ics";
+//http://events.stanford.edu/eventlist.ics
+var URL = "";
 
 // Skills name 
 var skillName = "CalendarMe:";
@@ -79,11 +80,11 @@ var relevantEvents = new Array();
 // Adding session handlers
 var newSessionHandlers = {
     'LaunchRequest': function () {
-        //this.handler.state = states.SEARCHMODE;
+        this.handler.state = states.SEARCHMODE;
         this.emit(':ask', skillName + " " + welcomeMessage, welcomeMessage);
     },
     'Unhandled': function() {
-        var message = 'Say yes to continue, or no to end';
+        var message = 'Say ask my calendar or open my calendar to start';
         this.emit(':ask', message, message);
     }
 };
