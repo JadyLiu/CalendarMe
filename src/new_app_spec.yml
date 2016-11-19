@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  CalendarMe:
+    Properties:
+      CodeUri: s3://calendar-me-sam/0eb259af7ac57ada037ac6bfea42e44d
+      Description: ''
+      Events:
+        AlexaSkillEvent:
+          Type: AlexaSkill
+      Handler: index.handler
+      MemorySize: 128
+      Role: arn:aws:iam::097509526832:role/service-role/Lambda-Alexa
+      Runtime: nodejs4.3
+      Timeout: 60
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

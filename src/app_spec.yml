@@ -1,0 +1,17 @@
+﻿AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  CalendarMe:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs4.3
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 60
+      Role: 'arn:aws:iam::097509526832:role/service-role/Lambda-Alexa'
+      Events:
+        AlexaSkillEvent:
+          Type: AlexaSkill
